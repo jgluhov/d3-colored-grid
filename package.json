@@ -1,0 +1,23 @@
+{
+  "name": "d3-colored-grid",
+  "version": "0.0.1",
+  "description": "Color grid visualization by using d3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgluhov/d3-colored-grid.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jgluhov/d3-colored-grid/issues"
+  },
+  "homepage": "https://github.com/jgluhov/d3-colored-grid#readme",
+  "dependencies": {
+    "d3": "^4.11.0"
+  }
+}
