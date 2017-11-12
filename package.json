@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/jgluhov/d3-colored-grid#readme",
   "dependencies": {
-    "d3": "^4.11.0"
-  }
+    "d3": "^4.11.0",
+    "d3-scale-chromatic": "^1.1.1"
+  },
+  "devDependencies": {}
 }

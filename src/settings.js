@@ -3,8 +3,8 @@
 
     global.store = global.store || {};
 
-    global.store.WIDTH = 640;
-    global.store.HEIGHT = 480;
+    global.store.WIDTH = 800;
+    global.store.HEIGHT = 600;
 
     global.store.GROUP_SPACING = 4;
     global.store.CELL_SPACING = 2;
