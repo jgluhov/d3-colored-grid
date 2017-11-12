@@ -3,5 +3,5 @@
 
     global.store = global.store || {};
 
-    window.store.data = d3.range(5000);
+    window.store.data = d3.range(global.store.COUNT);
 })(window);

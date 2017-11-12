@@ -11,12 +11,21 @@
         global.store.render(d3.range(count));
     });
 
-    d3.select('#container > canvas').on('click', function () {
+    const tooltip = d3.select('#tooltip');
 
+    d3.select('canvas').on('mouseleave', function () {
+        // tooltip.classed('hidden', true);
+        console.log('mouseleave')
+    });
+
+    d3.select('#container > canvas').on('mousemove', function () {
         const elements = global.store.custom
             .selectAll('custom.rect');
 
-        const { offsetX, offsetY }  = d3.event;
+        let { offsetX, offsetY }  = d3.event;
+
+        tooltip
+            .style('transform', `translate(${offsetX + 10}px, ${offsetY + 15}px)`);
 
         const isContained = function(x, y) {
             return (x <= offsetX && offsetX <= x + global.store.CELL_SIZE &&
@@ -32,9 +41,12 @@
             return isContained(x, y);
         });
 
-        found.each((el) => {
-            console.log(global.store.colorScale(el));
+        found.each(() => {
+            if (tooltip.classed('hidden')) {
+                tooltip.classed('hidden', false);
+            }
         });
-    })
+
+    });
 
 })(window);
