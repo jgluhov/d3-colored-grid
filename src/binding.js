@@ -5,19 +5,19 @@
 
     global.store.custom = d3.select(document.createElement('custom'));
 
-    const colorScale = d3.scaleSequential(d3.interpolateSpectral)
-        .domain(d3.extent(window.store.data, d => d.value));
+    window.store.bind = function (data) {
+        const colorScale = d3.scaleSequential(d3.interpolateSpectral)
+            .domain(d3.extent(data, d => d));
 
-    window.store.bind = function () {
         const update = global.store.custom
             .selectAll('custom.rect')
-            .data(global.store.data);
+            .data(data);
 
         update
             .exit()
-            .attr('globalAlpha', 0)
             .transition()
             .duration(1000)
+            .attr('globalAlpha', 0)
             .remove();
 
 
@@ -50,7 +50,7 @@
             .transition()
             .duration(1000)
             .attr('globalAlpha', 1)
-            .attr('fillStyle', d =>  colorScale(d.value))
+            .attr('fillStyle', d =>  colorScale(d))
     }
 
 })(window);
