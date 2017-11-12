@@ -15,6 +15,7 @@
 
             context.beginPath();
 
+            context.globalAlpha = node.attr('globalAlpha');
             context.fillStyle = node.attr('fillStyle');
             context.fillRect(
                 node.attr('x'),

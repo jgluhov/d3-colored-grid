@@ -15,8 +15,9 @@
 
         update
             .exit()
-            .attr('width', 0)
-            .attr('height', 0)
+            .attr('globalAlpha', 0)
+            .transition()
+            .duration(1000)
             .remove();
 
 
@@ -40,14 +41,16 @@
                     (global.store.CELL_SPACING + global.store.CELL_SIZE) *
                     (y1 + y0 * 10);
             })
-            .attr('width', 0)
-            .attr('height', 0);
+            .attr('width', global.store.CELL_SIZE)
+            .attr('height', global.store.CELL_SIZE)
+            .attr('globalAlpha', 0);
 
         update
             .merge(enter)
-            .attr('width', global.store.CELL_SIZE)
-            .attr('height', global.store.CELL_SIZE)
-            .attr('fillStyle', d =>  colorScale(d.value));
+            .transition()
+            .duration(1000)
+            .attr('globalAlpha', 1)
+            .attr('fillStyle', d =>  colorScale(d.value))
     }
 
 })(window);
