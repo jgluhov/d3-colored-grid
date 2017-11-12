@@ -1,3 +1,7 @@
+:root {
+    --base-font-family: 'Operator Mono', 'Comic Sans MS', sans-serif;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -7,7 +11,7 @@ html, body {
 }
 
 body {
-    font-family: 'Operator Mono', 'Comic Sans MS', sans-serif;
+    font-family: var(--base-font-family);
     padding: 10px 20px;
 }
 
@@ -20,3 +24,10 @@ fieldset {
 #container {
     padding: 10px 0;
 }
+
+#text-input {
+    font-family: var(--base-font-family);
+    font-size: 15px;
+    text-align: right;
+}
+
