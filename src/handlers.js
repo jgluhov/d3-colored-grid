@@ -13,19 +13,35 @@
 
     const tooltip = d3.select('#tooltip');
 
+    const hide = () => {
+        tooltip.classed('hidden', true);
+    };
+
+    const show = () => {
+        tooltip.classed('hidden', false);
+    }
+
     d3.select('canvas').on('mouseleave', function () {
-        // tooltip.classed('hidden', true);
-        console.log('mouseleave')
+        tooltip.classed('hidden', true);
     });
 
     d3.select('#container > canvas').on('mousemove', function () {
         const elements = global.store.custom
             .selectAll('custom.rect');
 
-        let { offsetX, offsetY }  = d3.event;
+        const { offsetX, offsetY }  = d3.event;
+
+        console.log(+global.store.custom.attr('max-height'));
+        console.log(offsetY)
+
+        if (offsetX > +global.store.custom.attr('max-width') ||
+            offsetY > +global.store.custom.attr('max-height')) {
+            hide();
+        }
 
         tooltip
-            .style('transform', `translate(${offsetX + 10}px, ${offsetY + 15}px)`);
+            .style('transform', `translate(${offsetX + 10}px, ${offsetY + 15}px)`)
+            .text();
 
         const isContained = function(x, y) {
             return (x <= offsetX && offsetX <= x + global.store.CELL_SIZE &&
@@ -41,12 +57,12 @@
             return isContained(x, y);
         });
 
-        found.each(() => {
-            if (tooltip.classed('hidden')) {
-                tooltip.classed('hidden', false);
-            }
-        });
+        found.each(function() {
+            const node = d3.select(this);
 
+            tooltip.text(node.attr('fillStyle'));
+            show();
+        });
     });
 
 })(window);

@@ -25,20 +25,16 @@
             .append('custom')
             .attr('class', 'rect')
             .attr('x', (d, i) => {
-                const x0 = Math.floor(i / 100) % 10,
-                    x1 = Math.floor(i % 10);
+                const groupIndex = Math.floor(i / 100) % 10,
+                    cellIndex = Math.floor(i % global.store.GROUP_SIZE);
 
-                return global.store.GROUP_SPACING * x0 +
-                    (global.store.CELL_SPACING + global.store.CELL_SIZE) *
-                    (x1 + x0 * 10);
+                return global.store.position(groupIndex, cellIndex);
             })
             .attr('y', (d, i) => {
-                const y0 = Math.floor(i / 1000),
-                    y1 = Math.floor(i % 100 / 10);
+                const groupIndex = Math.floor(i / 1000),
+                    cellIndex = Math.floor(i % 100 / global.store.GROUP_SIZE);
 
-                return global.store.GROUP_SPACING * y0 +
-                    (global.store.CELL_SPACING + global.store.CELL_SIZE) *
-                    (y1 + y0 * 10);
+                return global.store.position(groupIndex, cellIndex);
             })
             .attr('width', global.store.CELL_SIZE)
             .attr('height', global.store.CELL_SIZE)
@@ -49,7 +45,14 @@
             .transition()
             .duration(1000)
             .attr('globalAlpha', 1)
-            .attr('fillStyle', d =>  this.colorScale(d))
+            .attr('fillStyle', d =>  this.colorScale(d));
+
+        global.store.custom
+            .attr('max-width', () => global.store.position(9, 9))
+            .attr('max-height', () => {
+                const groupIndex = Math.floor(data[data.length - 1] / 1000);
+                return global.store.position(groupIndex, 9);
+            });
     }
 
 })(window);
