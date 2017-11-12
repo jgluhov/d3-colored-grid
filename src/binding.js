@@ -5,8 +5,8 @@
 
     global.store.custom = d3.select(document.createElement('custom'));
 
-    window.store.bind = function (data) {
-        const colorScale = d3.scaleSequential(d3.interpolateSpectral)
+    global.store.bind = function (data) {
+        this.colorScale = d3.scaleSequential(d3.interpolateSpectral)
             .domain(d3.extent(data, d => d));
 
         const update = global.store.custom
@@ -19,7 +19,6 @@
             .duration(1000)
             .attr('globalAlpha', 0)
             .remove();
-
 
         const enter = update
             .enter()
@@ -50,7 +49,7 @@
             .transition()
             .duration(1000)
             .attr('globalAlpha', 1)
-            .attr('fillStyle', d =>  colorScale(d))
+            .attr('fillStyle', d =>  this.colorScale(d))
     }
 
 })(window);
