@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+}
+
+body {
+    font-family: 'Operator Mono', 'Comic Sans MS', sans-serif;
+    padding: 10px 20px;
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}

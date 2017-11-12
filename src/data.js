@@ -1,4 +1,6 @@
 (function (global) {
+    'use strict';
+
     global.store = global.store || {};
 
     const data = [];
